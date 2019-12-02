@@ -1,5 +1,6 @@
 
 @arr = [3,5,6,7,8,9,10,11,12,13,14,23,26]
+array_for_quick_sort = [1,5,0,3,2,10,7]
 
 def summ(n)
     return 0 if n < 0
@@ -33,7 +34,15 @@ def binary(x, low, high)
     end
 end
 
-puts "Сумма  #{summ(@arr.size - 1)}"
+# Алгоритм быстрой сортировки рекурсией
+def quick_sort(arr)
+    return [] if arr.empty?
+    left, right = arr[1..-1].partition { |y| y <= arr.first }
+    quick_sort(left) + [arr.first] + quick_sort(right)
+end
+
+puts "\nСумма  #{summ(@arr.size - 1)}"
 puts "Количество элементов #{countt(@arr.size)}"
 puts "Наибольшее число из списка #{maxx(@arr.size - 1)}"
 puts "Бинарный поиск #{binary(11, 0, @arr.size - 1)}"
+print "Алгоритм быстрой сортировки #{quick_sort(array_for_quick_sort)}\n\n"
